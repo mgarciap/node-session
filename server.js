@@ -6,9 +6,8 @@ app.use(express.session({secret: 'demo'}));
 
 // default route
 app.get('/', function(req, res) {
-      // return session.name if exist, otherwise return 'Not Set'
-      var sname = (typeof req.session.name != 'undefined' && req.session.name != '') ? req.session.name : 'Not Set';
-      res.end('Name: ' + sname + '\n');
+      // write session.name
+      res.end('Name: ' + req.session.name + '\n');
 });
 
 app.get('/set/:name', function(req, res) {
