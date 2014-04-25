@@ -2,6 +2,10 @@ var express = require('express');
 var app = express();
 var RedisStore = require('connect-redis')(express);
 
+// for showing IP address
+var os = require('os');
+var ipv4 = os.networkInterfaces().eth0[0].address;
+
 app.use(express.cookieParser());
 app.use(express.session({
     store: new RedisStore({ url: process.env.REDIS_URL+'42' }),
@@ -10,7 +14,8 @@ app.use(express.session({
 
 // default route
 app.get('/', function(req, res) {
-      // write session.name
+      // write IP address and session.name
+      res.write('IP:' + ipv4 + '\n');
       res.end('Name: ' + req.session.name + '\n');
 });
 
