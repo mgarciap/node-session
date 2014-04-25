@@ -1,8 +1,12 @@
 var express = require('express');
 var app = express();
+var RedisStore = require('connect-redis')(express);
 
 app.use(express.cookieParser());
-app.use(express.session({secret: 'demo'}));
+app.use(express.session({
+    store: new RedisStore({ url: process.env.REDIS_URL+'42' }),
+    secret: 'demo'
+}));
 
 // default route
 app.get('/', function(req, res) {
