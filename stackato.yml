@@ -1,6 +1,0 @@
-name: node-session
-mem: 64M
-instances: 2
-url: ${name}.${target-base}
-services:
-  session-store: redis
