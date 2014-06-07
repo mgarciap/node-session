@@ -6,6 +6,4 @@ applications:
   host: shared-session-manu
   command: node server.js
   services:
-  - redis-manu
-#  env:
-#    REDIS_URL
+  - redisdb
