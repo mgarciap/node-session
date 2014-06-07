@@ -1,0 +1,11 @@
+---
+applications:
+- name: node-shared-session
+  memory: 64M
+  instances: 1
+  host: shared-session-manu
+  command: node server.js
+  services:
+  - redis-manu
+#  env:
+#    REDIS_URL
