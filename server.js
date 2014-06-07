@@ -32,8 +32,8 @@ app.get('/', function(req, res) {
       res.write('Container Port:' + process.env.VCAP_APP_PORT +'\n');
 
       res.write('redis_url: ' + redis_url + '\n\n');
-      res.write('VCAP_APPLICATION environment variables: ' + '\n' + process.env.VCAP_APPLICATION + '\n\n');
-      res.end('VCAP_SERVICES environment variables: ' + '\n' + process.env.VCAP_SERVICES)
+      res.write('VCAP_APPLICATION environment variables: ' + '\n' + JSON.stringify(JSON.parse(process.env.VCAP_APPLICATION), null, 4) + '\n\n');
+      res.end('VCAP_SERVICES environment variables: ' + '\n' + JSON.stringify(JSON.parse(process.env.VCAP_SERVICES), null, 4))
 });
 
 app.get('/set/:name', function(req, res) {
