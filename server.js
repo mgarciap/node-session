@@ -6,12 +6,14 @@ app.use(express.session({secret: 'demo'}));
 
 // default route
 app.get('/', function(req, res) {
+      // write session.name
+      res.write('Name: ' + req.session.name + '\n\n');
+
+      // ENV variables
       // write IP address app instance container and session.name
       res.write('Container Port:' + process.env.VCAP_APP_PORT +'\n');
 
-      // write session.name
-      res.write('Name: ' + req.session.name + '\n\n');
-      res.end('VCAP_APPLICATION environment variables: ' + '\n' + process.env.VCAP_APPLICATION)
+      res.end('VCAP_APPLICATION environment variables: ' + '\n' + JSON.stringify(JSON.parse(process.env.VCAP_APPLICATION), null, 4))
 });
 
 app.get('/set/:name', function(req, res) {
