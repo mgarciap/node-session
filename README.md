@@ -1,32 +1,18 @@
 # node-session
 
-example of using sessions in legacy apps versus cloud apps
+Example of using share stored sessions (Cloud apps) versus legacy 'in memory stored sessions'  apps
 
-## legacy app
+## PaaS app
 
-- hard-coded listening port
-- uses sessions/cookie sessions stored in memory
+- Stores session data in Redis and every instance read the data from one Redis DB
 
-Run locally:
+Run in PaaS (Cloud Foundry):
 ```
-$ git clone https://github.com/homingli/node-session
-$ git checkout legacy
-$ npm install
-$ node server.js
-```
+$ git clone https://github.com/mgarciap/node-session
+$ cf login -a api.run.pivotal.io
 
-## cloud app
+# Create Redis DB Service
+$ cf create-service rediscloud 25mb redisdb
 
-- intended for use in PaaS
-- uses Redis for session store (connect via URL from env)
-- service bindings (see stackato.yml)
-- leverages environment variables for listening port
-
-Run in PaaS (Stackato):
-```
-$ git clone https://github.com/homingli/node-session
-$ git checkout cloud
-$ stackato target <api endpoint>
-$ stackato login
-$ stackato push -n
+$ cf push
 ```
