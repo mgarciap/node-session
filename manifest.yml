@@ -1,0 +1,7 @@
+---
+applications:
+- name: node-local-session
+  memory: 64M
+  instances: 1
+  host: local-session-manu
+  command: node server.js
